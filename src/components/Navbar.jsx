@@ -26,19 +26,19 @@ const Navbar = () => {
             <XIcon className='md:hidden absolute top-6 w-6 h-6 cursor-pointer'
                     onClick={()=> setIsOpen(!isOpen)}/>
 
-            <Link to="/" onClick={()=> {scrollTo(0,0), setIsOpen(false)}}>
+            <Link to="/" onClick={()=> {scrollTo(0,0); setIsOpen(false)}}>
               Home
             </Link>
-            <Link to="/movies" onClick={()=> {scrollTo(0,0), setIsOpen(false)}}>
+            <Link to="/movies" onClick={()=> {scrollTo(0,0); setIsOpen(false)}}>
               Movies
             </Link>
-            <Link to="/" onClick={()=> {scrollTo(0,0), setIsOpen(false)}}>
+            <Link to="/" onClick={()=> {scrollTo(0,0); setIsOpen(false)}}>
               Theaters  
             </Link>
-            <Link to="/" onClick={()=> {scrollTo(0,0), setIsOpen(false)}}>
+            <Link to="/" onClick={()=> {scrollTo(0,0); setIsOpen(false)}}>
               Releases
             </Link>
-            <Link to="/favorite" onClick={()=> {scrollTo(0,0), setIsOpen(false)}}>
+            <Link to="/favorite" onClick={()=> {scrollTo(0,0); setIsOpen(false)}}>
               Favorites
             </Link>
         </div>
