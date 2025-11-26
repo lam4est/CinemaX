@@ -2,7 +2,7 @@ import React from 'react'
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import BlurCircle from './BlurCircle'
-import { ChevronLeftIcon } from 'lucide-react'
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react'
 import toast from 'react-hot-toast';
 
 const DateSelect = ({dateTime, id}) => {
@@ -35,7 +35,7 @@ const DateSelect = ({dateTime, id}) => {
                             </button>
                         ))}
                     </span>
-                    <ChevronLeftIcon width={28} />
+                    <ChevronRightIcon width={28} />
                 </div>
             </div>
             <button onClick={onBookHandler} className='bg-primary text-white px-8 py-2 mt-6 rounded hover:bg-primary-90 transition-all cursor-pointer'>
