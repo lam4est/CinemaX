@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Loading from "../../components/Loading";
-import { CheckIcon, StarIcon } from "lucide-react";
-import { dummyShowsData } from "../../assets/assets";
+import { CheckIcon, StarIcon, X } from "lucide-react";
+import { moviesAPI } from "../../lib/api";
 import Title from "../../components/admin/Title";
 import { kConverter } from "../../lib/kConverter";
 
@@ -14,7 +14,14 @@ const AddShows = () => {
   const [showPrice, setShowPrice] = useState("");
 
   const fetchNowPlayingMovies = async () => {
-    setNowPlayingMovies(dummyShowsData);
+    try {
+      const data = await moviesAPI.getAll();
+      const moviesList = Array.isArray(data) ? data : (data.results || []);
+      setNowPlayingMovies(moviesList);
+    } catch (error) {
+      console.error('Error fetching movies:', error);
+      setNowPlayingMovies([]);
+    }
   };
 
   const handleDateTimeAdd = () => {
@@ -62,11 +69,11 @@ const AddShows = () => {
         <div className="group flex flex-wrap gap-4 mt-4 w-max">
           {nowPlayingMovies.map((movie) => (
             <div
-              key={movie.id}
-              onClick={() => setSelectedMovie(movie.id)}
+              key={movie._id || movie.id}
+              onClick={() => setSelectedMovie(movie._id || movie.id)}
               className={`relative max-w-40 cursor-pointer 
                         ${
-                          selectedMovie && selectedMovie.id === movie.id
+                          selectedMovie === (movie._id || movie.id)
                             ? "opacity-100 ring ring-primary"
                             : "opacity-40"
                         }
@@ -88,7 +95,7 @@ const AddShows = () => {
                   </p>
                 </div>
               </div>
-              {selectedMovie === movie.id && (
+              {selectedMovie === (movie._id || movie.id) && (
                 <div className="absolute top-2 right-2 flex items-center justify-center bg-primary h-6 w-6 rounded">
                   <CheckIcon className="w-4 h-4 text-white" strokeWidth={2.5} />
                 </div>
@@ -152,9 +159,9 @@ const AddShows = () => {
                     >
                       <span>{time}</span>
 
-                      <DeleteIcon
+                      <X
                         onClick={() => handleRemoveTime(date, time)}
-                        width={15}
+                        size={15}
                         className="ml-2 text-red-500 hover:text-red-700 cursor-pointer"
                       />
                     </div>

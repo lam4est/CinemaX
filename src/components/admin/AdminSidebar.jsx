@@ -13,6 +13,7 @@ const AdminSidebar = () => {
 
   const adminNavlinks = [
     { name: 'Dashboard', path: '/admin', icon: LayoutDashboardIcon },
+    { name: 'Quản lý Phim', path: '/admin/movies', icon: ListIcon },
     { name: 'Add Shows', path: '/admin/add-shows', icon: PlusSquareIcon },
     { name: 'List Shows', path: '/admin/list-shows', icon: ListIcon },
     { name: 'List Bookings', path: '/admin/list-bookings', icon: ListCollapseIcon },
